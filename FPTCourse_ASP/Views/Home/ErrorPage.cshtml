@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "ErrorPage";
+}
+<!--// Main Content \\-->
+<div class="wm-main-content ">
+
+    <!--// Main Section \\-->
+    <div class="wm-main-section">
+        <div class="wm-404page-bg">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-7">
+                        <div class="wm-404page">
+                            <div class="wm-404page-text">
+                                <h3>Ooops! Page Not Found!</h3>
+                                @ViewBag.thongbao
+                                <p>The page you are looking for might have been removed, had its name changed, or is temporarily unavailable..</p>
+                                <ul>
+                                    <li>If you typed the page adress, make sure it is spelled correctly.</li>
+                                    <li>Click <a href="#">Back</a> button to try another link.</li>
+                                    <li>Or go back on <a href="index-2.html">Homepage</a> and try there.</li>
+                                </ul>
+                                <form>
+                                    <input type="text" onfocus="if(this.value =='Enter Your Keyword') { this.value = ''; }" onblur="if(this.value == '') { this.value ='Enter Your Keyword'; }" value="Enter Your Keyword">
+                                    <i class="wmicon-search"></i>
+                                    <input type="submit" value="">
+                                </form>
+                            </div>
+                            <div class="wm-404page-button">
+                                <ul>
+                                    <li><a href="javascript: history.go(-1)">Go Back</a> </li>
+                                    <li>@Html.ActionLink("Back to home page","Index","Home")</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--// Main Section \\-->
+
+</div>
+<!--// Main Content \\-->

@@ -1,0 +1,72 @@
+﻿@model FPTCourse_ASP.Models.User
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Permission1.User_Permission_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Permission1.User_Permission_Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

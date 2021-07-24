@@ -1,0 +1,263 @@
+﻿@model FPTCourse_ASP.Models.User
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@*<h2>Details</h2>
+
+<div>
+    <h4>User</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Email)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Email)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Phone)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Phone)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Username)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Username)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Permission1.User_Permission_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Permission1.User_Permission_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.User_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>*@
+<!--// Mini Header \\-->
+<div class="wm-mini-header">
+    <span class="wm-blue-transparent"></span>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wm-mini-title">
+                    <h1>Student Dashboard</h1>
+                </div>
+                <div class="wm-breadcrumb">
+                    <ul>
+                        <li><a href="index-2.html">Home</a></li>
+                        <li><a href="#">Student Dashboard</a></li>
+                        <li>Profile</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--// Mini Header \\-->
+<!--// Main Content \\-->
+<div class="wm-main-content">
+
+    <!--// Main Section \\-->
+    <div class="wm-main-section">
+        <div class="container">
+            <div class="row">
+                <aside class="col-md-4">
+                    <div class="wm-student-dashboard-nav">
+                        <div class="wm-student-nav">
+                            <figure>
+                                <a href="#"><img src="extra-images/students-setting-1.jpg" alt=""></a>
+                            </figure>
+                            <div class="wm-student-nav-text">
+                                <h6> @Html.DisplayFor(model => model.User_Name)</h6>
+                                <a href="#">update image</a>
+                            </div>
+                            <ul>
+                                <li class="active">
+                                    <a href="#">
+                                        <i class="wmicon-avatar"></i>
+                                        Profile Details
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="wmicon-book"></i>
+                                        My Courses
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="wmicon-favorite"></i>
+                                        Favorites
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="wmicon-paper"></i>
+                                        Statement
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="wmicon-three"></i>
+                                        Settings
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="wmicon-arrow"></i>
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+                <div class="col-md-8">
+                    <div class="wm-student-profile-info">
+                        <div class="wm-student-dashboard-profile">
+                            <div class="wm-plane-title">
+                                <h2>About Me</h2>
+                            </div>
+                            <ul class="row">
+                                <li class="col-md-4">
+                                    <div class="wm-student-profile">
+                                        <a class=wm-circle-icon href="#"><i class="wmicon-technology4"></i></a>
+                                        <div class="wm-student-profile-text">
+                                            <span>Phone:</span>
+                                            <a href="#"> @Html.DisplayFor(model => model.User_Phone)</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="col-md-4">
+                                    <div class="wm-student-profile">
+                                        <a class=wm-circle-icon href="#"><i class="wmicon-web2"></i></a>
+                                        <div class="wm-student-profile-text">
+                                            <span>Email:</span>
+                                            <a href="#"> @Html.DisplayFor(model => model.User_Email)</a>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="col-md-4">
+                                    <div class="wm-student-profile">
+                                        <a class=wm-circle-icon href="#"><i class="fa fa-graduation-cap"></i></a>
+                                        <div class="wm-student-profile-text">
+                                            <span>Address:</span>
+                                            <a href="#"> @Html.DisplayFor(model => model.User_Address)</a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                            <p>Becoming a student requires more than a test score. To “be student” requires persistence. And passion. And a desire to give back. It doesn’t matter 	whether you’re the first in your family to attend college or you’re the latest in a long tradition of educational excellence: You stand up and you stand out.</p>
+                        </div>
+                        <div class="wm-profile-info">
+                            <div class="wm-title-full">
+                                <h5>More Detail Information</h5>
+                            </div>
+                            <div class="wm-article">
+                                <ul>
+                                    <li class="wm-profile-info-right">
+                                        <span>Public on campus</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="wm-article">
+                                <ul>
+                                    <li class="wm-profile-start">
+                                        <div class="wm-profile-detail-info">
+                                            <h6><a href="#">Volunteer work with non-profits</a></h6>
+                                            <span>No details have been entered.</span>
+                                        </div>
+                                    </li>
+                                    <li><a href="#" class="wm-edit-icon"><i class="wmicon-tool3"></i>Edit</a></li>
+                                    <li>
+                                        <div class="wm-select-checkbox">
+                                            <input id="c22" type="checkbox" name="ca">
+                                            <label for="c22">
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <form class="wm-profile-info-search">
+                                    <input type="text" onfocus="if(this.value =='Enter text here ...') { this.value = ''; }" onblur="if(this.value == '') { this.value ='Enter text here ...'; }" value="Enter text here ...">
+                                </form>
+                            </div>
+                            <div class="wm-article">
+                                <ul>
+                                    <li class="wm-profile-start">
+                                        <div class="wm-profile-detail-info">
+                                            <h6><a href="#">Knowledge and skills</a></h6>
+                                            <span>No details have been entered.</span>
+                                        </div>
+                                    </li>
+                                    <li><a href="#" class="wm-edit-icon"><i class="wmicon-tool3"></i>Edit</a></li>
+                                    <li>
+                                        <div class="wm-select-checkbox">
+                                            <input id="c23" type="checkbox" name="ca">
+                                            <label for="c23">
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="wm-article">
+                                <ul>
+                                    <li class="wm-profile-start">
+                                        <div class="wm-profile-detail-info">
+                                            <h6><a href="#">Languages</a></h6>
+                                            <span>English (B2); Spanish (native)</span>
+                                        </div>
+                                    </li>
+                                    <li><a href="#" class="wm-edit-icon"><i class="wmicon-tool3"></i>Edit</a></li>
+                                    <li>
+                                        <div class="wm-select-checkbox">
+                                            <input id="c24" type="checkbox" name="ca">
+                                            <label for="c24">
+                                                <span></span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--// Main Section \\-->
+    <!--// Main Section \\-->
+</div>
+<!--// Main Content \\-->

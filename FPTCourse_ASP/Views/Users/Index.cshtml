@@ -1,0 +1,123 @@
+﻿@model IEnumerable<FPTCourse_ASP.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<!--// Main Content \\-->
+<div class="wm-main-content">
+
+    <!--// Main Section \\-->
+    <div class="wm-main-section">
+        <div class="container">
+            <div class="row">
+
+                <aside class="col-md-3">
+                    <div class="widget wm-search-course">
+                        <h3 class="wm-short-title wm-color">Find Account</h3>
+                        <p>Find your account here:</p>
+                        <form>
+                            <ul>
+                                <li>
+                                    <div class="wm-radio">
+                                        <div class="wm-radio-partition">
+                                            <input id="male" type="radio" name="gender" value="male">
+                                            <label for="male">by ID</label>
+                                        </div>
+                                        <div class="wm-radio-partition">
+                                            <input id="female" type="radio" name="gender" value="female">
+                                            <label for="female">by name</label>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li> <input type="text" value="User Name" onblur="if(this.value == '') { this.value ='User Name'; }" onfocus="if(this.value =='User Name') { this.value = ''; }"> <i class="wmicon-search"></i> </li>
+                                <li>
+                                    <div class="wm-apply-select">
+                                        <select>
+                                            <option>Category</option>
+                                            <option>Category</option>
+                                            <option>Category</option>
+                                            <option>Category</option>
+                                        </select>
+                                    </div>
+                                </li>
+                                <li> <input type="submit" value="Search User"> </li>
+                            </ul>
+                        </form>
+                    </div>
+                </aside>
+
+                <div class="col-md-9">
+                    <h1>Account List</h1>
+                    @Html.ActionLink("Create", "Create", new { style="font-size:30px;padding:10px" })
+                    <table class="table">
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.User_Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.User_Email)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.User_Phone)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.User_Address)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.User_Username)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.User_Permission1.User_Permission_Name)
+                            </th>
+                            <th></th>
+                        </tr>
+
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>                                   
+                                    @Html.DisplayFor(modelItem => item.User_Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.User_Email)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.User_Phone)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.User_Address)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.User_Username)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.User_Permission1.User_Permission_Name)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.User_ID }) |
+                                    @*@Html.ActionLink("Details", "Details", new { id = item.User_ID }) |*@
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.User_ID })
+                                </td>
+                            </tr>
+                        }
+                    </table>
+                    <div class="wm-pagination">
+                        <ul>
+                            <li><a href="#" aria-label="Previous"> <i class="wmicon-arrows4"></i> Previous</a></li>
+                            <li class="active"><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li>...</li>
+                            <li><a href="#">18</a></li>
+                            <li><a href="#" aria-label="Next"> <i class="wmicon-arrows4"></i> Next</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!--// Main Section \\-->
+
+</div>

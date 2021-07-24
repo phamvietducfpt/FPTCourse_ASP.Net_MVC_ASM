@@ -1,0 +1,69 @@
+﻿@model FPTCourse_ASP.Models.Topic
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@*<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Topic</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Topic_ID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Topic_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Topic_Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Topic_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+<div class="col-md-8">
+    <div class="wm-student-settings-info">
+        <div class="wm-student-dashboard-settings">
+            <div class="wm-plane-title">
+                <h2>Topic Setting </h2>
+                @ViewBag.thongbao
+            </div>
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.Topic_ID)
+                <ul>
+
+                    <li>
+                        <p>Topic Name:</p>
+                        @Html.EditorFor(model => model.Topic_Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Topic_Name, "", new { @class = "text-danger" })
+                    </li>
+                    <li><input type="submit" value="update changes" style="border: 1px solid; float: left; background-color: rgba(0,0,0,0); font-size: 12px; margin: 26px 0px 0px 0px; padding: 2px 17px 4px 17px; text-transform: uppercase; border-color: #b99663;"></li>
+                </ul>
+
+            }
+
+        </div>
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    </div>
+</div>

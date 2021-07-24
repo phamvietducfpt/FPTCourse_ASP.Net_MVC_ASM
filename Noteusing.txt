@@ -1,0 +1,5 @@
+admin
+ username:admin
+pass:123
+db trong visual luôn ạ
+Nếu thầy out app giữa chừng lúc vô lại /home/logout để xóa cookie ạ

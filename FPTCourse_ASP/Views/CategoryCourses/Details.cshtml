@@ -1,0 +1,28 @@
+﻿@model FPTCourse_ASP.Models.CategoryCourse
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>CategoryCourse</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Cat_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Cat_Name)
+        </dd>
+
+    </dl>
+</div>
+<div class="wm-404page-button">
+    <ul>
+        <li><a href="javascript: history.go(-1)">Go Back</a> </li>
+        <li>@Html.ActionLink("Back to home page", "Index", "Home")</li>
+    </ul>
+</div>

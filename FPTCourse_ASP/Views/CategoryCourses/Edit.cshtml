@@ -1,0 +1,103 @@
+﻿@model FPTCourse_ASP.Models.CategoryCourse
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@*<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>CategoryCourse</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.CatCourse_ID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Cat_Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Cat_Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Cat_Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>*@
+<div class="wm-mini-header">
+    <span class="wm-blue-transparent"></span>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wm-mini-title">
+                    <h1>Training Staff Dashboard</h1>
+                </div>
+                <div class="wm-breadcrumb">
+                    <ul>
+                        <li><a href="index-2.html">Home</a></li>
+                        <li><a href="#">Categories Course</a></li>
+                        <li>Settings</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--// Mini Header \\-->
+<!--// Main Content \\-->
+<div class="wm-main-content">
+    <!--// Main Section \\-->
+    <div class="wm-main-section">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-8">
+                    <div class="wm-student-settings-info">
+                        <div class="wm-student-dashboard-settings">
+                            <div class="wm-plane-title">
+                                <h2>Category Settings</h2>
+                                @ViewBag.thongbao
+                            </div>
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                @Html.HiddenFor(model => model.CatCourse_ID)
+                                <ul>
+                                    <li>
+                                        <a>Category Course Name:</a>
+                                        @Html.EditorFor(model => model.Cat_Name, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.Cat_Name, "", new { @class = "text-danger" })
+                                    </li>
+                                </ul>
+                                <div class="wm-student-dashboard-form wm-student-dashboard">
+                                    <ul>
+                                        <li><input type="submit" value="Change Category" style="background: #f7f7f7; border-bottom: 2px solid #eaeaea; color: #a9a9a9; font-size: 15px; font-style: italic; font-weight: 400; height: 43px; margin: 0px; width: 100%; padding: 0px 0px 1px 19px; border-color: #b99663; color: #b99663 "></li>
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                        <div>
+                            @Html.ActionLink("Back to List", "Index")
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--// Main Section \\-->
+
+</div>
+<!--// Main Content \\-->

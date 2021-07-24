@@ -1,0 +1,206 @@
+﻿@model FPTCourse_ASP.Models.User
+
+@{
+    ViewBag.Title = "Edit";
+}
+<div class="wm-mini-header">
+    <span class="wm-blue-transparent"></span>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="wm-mini-title">
+                    <h1>Student Dashboard</h1>
+                </div>
+                <div class="wm-breadcrumb">
+                    <ul>
+                        <li><a href="index-2.html">Home</a></li>
+                        <li><a href="#">Student Dashboard</a></li>
+                        <li>Settings</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--// Mini Header \\-->
+<!--// Main Content \\-->
+<div class="wm-main-content">
+    <!--// Main Section \\-->
+    <div class="wm-main-section">
+        <div class="container">
+            <div class="row">
+                <aside class="col-md-4">
+                    <div class="wm-student-dashboard-nav">
+                        <div class="wm-student-nav">
+                            <figure>
+                                <a href="#"><img src="/Assets/extra-images/students-setting-1.jpg" alt=""></a>
+                            </figure>
+                            <div class="wm-student-nav-text">
+                                <h6>@Html.DisplayFor(model => model.User_Name)</h6>
+                                <a href="#">update image</a>
+                            </div>
+                            <ul>
+                                <li>
+                                    <a>
+                                        <i class="wmicon-avatar"></i> @Html.ActionLink("Profile Details", "Details", "Users", new { @class = "wmicon-avatar" })
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="wmicon-book"></i>
+                                        My Courses
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="wmicon-favorite"></i>
+                                        Favorites
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="wmicon-paper"></i>
+                                        Statement
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a href="#">
+                                        <i class="wmicon-three"></i>
+                                        Settings
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="wmicon-arrow"></i>
+                                        Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </aside>
+                <div class="col-md-8">
+                    <div class="wm-student-settings-info">
+                        <div class="wm-student-dashboard-settings">
+                            <div class="wm-plane-title">
+                                <h2>Profile Settings</h2>
+                                @ViewBag.thongbao
+                            </div>
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.User_Permission)
+                                @Html.HiddenFor(model => model.User_ID)
+                                <ul>
+                                    <li>
+                                        <a>Full Name:</a>
+                                        @Html.EditorFor(model => model.User_Name, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.User_Name, "", new { @class = "text-danger" })
+                                    </li>
+                                    <li>
+                                        <a>Email:</a>
+                                        @Html.EditorFor(model => model.User_Email, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.User_Email, "", new { @class = "text-danger" })
+                                    </li>
+                                    <li>
+                                        <a>Phone:</a>
+                                        @Html.EditorFor(model => model.User_Phone, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.User_Phone, "", new { @class = "text-danger" })
+                                    </li>
+                                    <li>
+                                        <a>Address:</a>
+                                        @Html.EditorFor(model => model.User_Address, new { htmlAttributes = new { @class = "form-control" } })
+                                        @Html.ValidationMessageFor(model => model.User_Address, "", new { @class = "text-danger" })
+                                    </li>
+                                    <li class="wm-student-select">
+                                        <div class="wm-select-two">
+                                            <select>
+                                                <option>Day of Birth </option>
+                                                <option>Day of Birth 1 </option>
+                                                <option>Day of Birth 2 </option>
+                                                <option>Day of Birth 3 </option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li class="wm-student-select">
+                                        <div class="wm-select-two">
+                                            <select>
+                                                <option>Month of Birth </option>
+                                                <option>Month of Birth 1 </option>
+                                                <option>Month of Birth 2 </option>
+                                                <option>Month of Birth 3 </option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li class="wm-student-select">
+                                        <div class="wm-select-two">
+                                            <select>
+                                                <option>Year of Birth </option>
+                                                <option>Year of Birth 1 </option>
+                                                <option>Year of Birth 2 </option>
+                                                <option>Year of Birth 3 </option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="wm-select-two">
+                                            <select>
+                                                <option>Country </option>
+                                                <option>Country 1 </option>
+                                                <option>Country 2 </option>
+                                                <option>Country 3 </option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="wm-select-two">
+                                            <select>
+                                                <option>City </option>
+                                                <option>City 1 </option>
+                                                <option>City 2 </option>
+                                                <option>City 3 </option>
+                                            </select>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <div class="wm-student-dashboard-form">
+                                    <div class="wm-full-title ">
+                                        <h2>Update Account</h2>
+                                    </div>
+                                    <ul>
+                                        <li>
+                                            <a>Username:</a>
+                                            @Html.EditorFor(model => model.User_Username, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.User_Username, "", new { @class = "text-danger" })
+                                        </li>
+                                        <li>
+                                            <a>Old Password:</a>
+                                            <input type="password" name="User_OldPassword" value="password" onfocus="if(this.value =='password') { this.value = ''; }">
+                                        </li>
+                                        <li>
+                                            <a>New Password:</a>
+                                            @Html.EditorFor(model => model.User_Password, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                                            @Html.ValidationMessageFor(model => model.User_Password, "", new { @class = "text-danger" })
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="wm-student-dashboard-form wm-student-dashboard">
+                                    <ul>
+                                        <li class="wm-form-icon"><a class="fa fa-facebook wm-icon" href="#"></a><input type="text" value="kevinnikols" onblur="if(this.value == '') { this.value ='kevinnikols'; }" onfocus="if(this.value =='kevinnikols') { this.value = ''; }"></li>
+                                        <li class="wm-form-icon"><a class="fa fa-twitter wm-icon" href="#"></a><input type="text" value="kevinnikols" onblur="if(this.value == '') { this.value ='kevinnikols'; }" onfocus="if(this.value =='kevinnikols') { this.value = ''; }"></li>
+                                        <li class="wm-form-icon"><a class="fa fa-youtube wm-icon" href="#"></a><input type="text" value="kevinnikols" onblur="if(this.value == '') { this.value ='kevinnikols'; }" onfocus="if(this.value =='kevinnikols') { this.value = ''; }"></li>
+                                        <li><input type="submit" value="Update Account" style="background: #f7f7f7; border-bottom: 2px solid #eaeaea; color: #a9a9a9; font-size: 15px; font-style: italic; font-weight: 400; height: 43px; margin: 0px; width: 100%; padding: 0px 0px 1px 19px; border-color: #b99663; color: #b99663 "></li>
+                                    </ul>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--// Main Section \\-->
+
+</div>
+<!--// Main Content \\-->

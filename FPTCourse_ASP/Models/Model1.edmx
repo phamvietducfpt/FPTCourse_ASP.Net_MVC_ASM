@@ -1,0 +1,471 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="ManageCourseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CategoryCourse">
+          <Key>
+            <PropertyRef Name="CatCourse_ID" />
+          </Key>
+          <Property Name="CatCourse_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cat_Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Course_ID" />
+          </Key>
+          <Property Name="Course_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Course_Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="CatCourse_ID" Type="int" />
+          <Property Name="Topic_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="CourseUser">
+          <Key>
+            <PropertyRef Name="Course_ID" />
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="Course_ID" Type="int" Nullable="false" />
+          <Property Name="User_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Permission">
+          <Key>
+            <PropertyRef Name="Permission_ID" />
+          </Key>
+          <Property Name="Permission_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Permission_Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="Topic_ID" />
+          </Key>
+          <Property Name="Topic_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Topic_Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="User_Email" Type="nvarchar" MaxLength="255" />
+          <Property Name="User_Phone" Type="int" />
+          <Property Name="User_Address" Type="nvarchar" MaxLength="100" />
+          <Property Name="User_Permission" Type="nvarchar" MaxLength="50" />
+          <Property Name="User_Username" Type="nvarchar" MaxLength="100" />
+          <Property Name="User_Password" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="User_Permission">
+          <Key>
+            <PropertyRef Name="User_Permission" />
+          </Key>
+          <Property Name="User_Permission" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_Permission_Name" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="UserPer_Permission">
+          <Key>
+            <PropertyRef Name="User_Permission" />
+            <PropertyRef Name="Permission_ID" />
+          </Key>
+          <Property Name="User_Permission" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Permission_ID" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Ghichu" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <Association Name="FK_Course_CatCourse">
+          <End Role="CategoryCourse" Type="Self.CategoryCourse" Multiplicity="0..1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryCourse">
+              <PropertyRef Name="CatCourse_ID" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="CatCourse_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Course_ID_User">
+          <End Role="Course" Type="Self.Course" Multiplicity="1" />
+          <End Role="CourseUser" Type="Self.CourseUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Course">
+              <PropertyRef Name="Course_ID" />
+            </Principal>
+            <Dependent Role="CourseUser">
+              <PropertyRef Name="Course_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Course_Topic">
+          <End Role="Topic" Type="Self.Topic" Multiplicity="0..1" />
+          <End Role="Course" Type="Self.Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="Topic_ID" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="Topic_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permission_ID">
+          <End Role="Permission" Type="Self.Permission" Multiplicity="1" />
+          <End Role="UserPer_Permission" Type="Self.UserPer_Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permission">
+              <PropertyRef Name="Permission_ID" />
+            </Principal>
+            <Dependent Role="UserPer_Permission">
+              <PropertyRef Name="Permission_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Course">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="CourseUser" Type="Self.CourseUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="CourseUser">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Permission">
+          <End Role="User_Permission" Type="Self.User_Permission" Multiplicity="0..1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Permission">
+              <PropertyRef Name="User_Permission" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="User_Permission" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPer_Permission">
+          <End Role="User_Permission" Type="Self.User_Permission" Multiplicity="1" />
+          <End Role="UserPer_Permission" Type="Self.UserPer_Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Permission">
+              <PropertyRef Name="User_Permission" />
+            </Principal>
+            <Dependent Role="UserPer_Permission">
+              <PropertyRef Name="User_Permission" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="ManageCourseModelStoreContainer">
+          <EntitySet Name="CategoryCourse" EntityType="Self.CategoryCourse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Course" EntityType="Self.Course" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CourseUser" EntityType="Self.CourseUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Topic" EntityType="Self.Topic" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Permission" EntityType="Self.User_Permission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserPer_Permission" EntityType="Self.UserPer_Permission" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Course_CatCourse" Association="Self.FK_Course_CatCourse">
+            <End Role="CategoryCourse" EntitySet="CategoryCourse" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_ID_User" Association="Self.FK_Course_ID_User">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="CourseUser" EntitySet="CourseUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_Topic" Association="Self.FK_Course_Topic">
+            <End Role="Topic" EntitySet="Topic" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permission_ID" Association="Self.FK_Permission_ID">
+            <End Role="Permission" EntitySet="Permission" />
+            <End Role="UserPer_Permission" EntitySet="UserPer_Permission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Course" Association="Self.FK_User_Course">
+            <End Role="User" EntitySet="User" />
+            <End Role="CourseUser" EntitySet="CourseUser" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Permission" Association="Self.FK_User_Permission">
+            <End Role="User_Permission" EntitySet="User_Permission" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPer_Permission" Association="Self.FK_UserPer_Permission">
+            <End Role="User_Permission" EntitySet="User_Permission" />
+            <End Role="UserPer_Permission" EntitySet="UserPer_Permission" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="ManageCourseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="ManageCourseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CategoryCourse" EntityType="ManageCourseModel.CategoryCourse" />
+          <EntitySet Name="Course" EntityType="ManageCourseModel.Course" />
+          <EntitySet Name="Permission" EntityType="ManageCourseModel.Permission" />
+          <EntitySet Name="Topic" EntityType="ManageCourseModel.Topic" />
+          <EntitySet Name="User" EntityType="ManageCourseModel.User" />
+          <EntitySet Name="User_Permission" EntityType="ManageCourseModel.User_Permission" />
+          <EntitySet Name="UserPer_Permission" EntityType="ManageCourseModel.UserPer_Permission" />
+          <AssociationSet Name="FK_Course_CatCourse" Association="ManageCourseModel.FK_Course_CatCourse">
+            <End Role="CategoryCourse" EntitySet="CategoryCourse" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Course_Topic" Association="ManageCourseModel.FK_Course_Topic">
+            <End Role="Topic" EntitySet="Topic" />
+            <End Role="Course" EntitySet="Course" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Permission_ID" Association="ManageCourseModel.FK_Permission_ID">
+            <End Role="Permission" EntitySet="Permission" />
+            <End Role="UserPer_Permission" EntitySet="UserPer_Permission" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Permission" Association="ManageCourseModel.FK_User_Permission">
+            <End Role="User_Permission" EntitySet="User_Permission" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserPer_Permission" Association="ManageCourseModel.FK_UserPer_Permission">
+            <End Role="User_Permission" EntitySet="User_Permission" />
+            <End Role="UserPer_Permission" EntitySet="UserPer_Permission" />
+          </AssociationSet>
+          <AssociationSet Name="CourseUser" Association="ManageCourseModel.CourseUser">
+            <End Role="Course" EntitySet="Course" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="CategoryCourse">
+          <Key>
+            <PropertyRef Name="CatCourse_ID" />
+          </Key>
+          <Property Name="CatCourse_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cat_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Course" Relationship="ManageCourseModel.FK_Course_CatCourse" FromRole="CategoryCourse" ToRole="Course" />
+        </EntityType>
+        <EntityType Name="Course">
+          <Key>
+            <PropertyRef Name="Course_ID" />
+          </Key>
+          <Property Name="Course_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Course_Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CatCourse_ID" Type="Int32" />
+          <Property Name="Topic_ID" Type="Int32" />
+          <NavigationProperty Name="CategoryCourse" Relationship="ManageCourseModel.FK_Course_CatCourse" FromRole="Course" ToRole="CategoryCourse" />
+          <NavigationProperty Name="Topic" Relationship="ManageCourseModel.FK_Course_Topic" FromRole="Course" ToRole="Topic" />
+          <NavigationProperty Name="User" Relationship="ManageCourseModel.CourseUser" FromRole="Course" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Permission">
+          <Key>
+            <PropertyRef Name="Permission_ID" />
+          </Key>
+          <Property Name="Permission_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Permission_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserPer_Permission" Relationship="ManageCourseModel.FK_Permission_ID" FromRole="Permission" ToRole="UserPer_Permission" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="Topic_ID" />
+          </Key>
+          <Property Name="Topic_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Topic_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Course" Relationship="ManageCourseModel.FK_Course_Topic" FromRole="Topic" ToRole="Course" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="User_Email" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="User_Phone" Type="Int32" />
+          <Property Name="User_Address" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="User_Permission" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="User_Username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="User_Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User_Permission1" Relationship="ManageCourseModel.FK_User_Permission" FromRole="User" ToRole="User_Permission" />
+          <NavigationProperty Name="Course" Relationship="ManageCourseModel.CourseUser" FromRole="User" ToRole="Course" />
+        </EntityType>
+        <EntityType Name="User_Permission">
+          <Key>
+            <PropertyRef Name="User_Permission1" />
+          </Key>
+          <Property Name="User_Permission1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="User_Permission_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="ManageCourseModel.FK_User_Permission" FromRole="User_Permission" ToRole="User" />
+          <NavigationProperty Name="UserPer_Permission" Relationship="ManageCourseModel.FK_UserPer_Permission" FromRole="User_Permission" ToRole="UserPer_Permission" />
+        </EntityType>
+        <EntityType Name="UserPer_Permission">
+          <Key>
+            <PropertyRef Name="User_Permission" />
+            <PropertyRef Name="Permission_ID" />
+          </Key>
+          <Property Name="User_Permission" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Permission_ID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Ghichu" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Permission" Relationship="ManageCourseModel.FK_Permission_ID" FromRole="UserPer_Permission" ToRole="Permission" />
+          <NavigationProperty Name="User_Permission1" Relationship="ManageCourseModel.FK_UserPer_Permission" FromRole="UserPer_Permission" ToRole="User_Permission" />
+        </EntityType>
+        <Association Name="FK_Course_CatCourse">
+          <End Type="ManageCourseModel.CategoryCourse" Role="CategoryCourse" Multiplicity="0..1" />
+          <End Type="ManageCourseModel.Course" Role="Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CategoryCourse">
+              <PropertyRef Name="CatCourse_ID" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="CatCourse_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Course_Topic">
+          <End Type="ManageCourseModel.Topic" Role="Topic" Multiplicity="0..1" />
+          <End Type="ManageCourseModel.Course" Role="Course" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topic">
+              <PropertyRef Name="Topic_ID" />
+            </Principal>
+            <Dependent Role="Course">
+              <PropertyRef Name="Topic_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Permission_ID">
+          <End Type="ManageCourseModel.Permission" Role="Permission" Multiplicity="1" />
+          <End Type="ManageCourseModel.UserPer_Permission" Role="UserPer_Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Permission">
+              <PropertyRef Name="Permission_ID" />
+            </Principal>
+            <Dependent Role="UserPer_Permission">
+              <PropertyRef Name="Permission_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Permission">
+          <End Type="ManageCourseModel.User_Permission" Role="User_Permission" Multiplicity="0..1" />
+          <End Type="ManageCourseModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Permission">
+              <PropertyRef Name="User_Permission1" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="User_Permission" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserPer_Permission">
+          <End Type="ManageCourseModel.User_Permission" Role="User_Permission" Multiplicity="1" />
+          <End Type="ManageCourseModel.UserPer_Permission" Role="UserPer_Permission" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User_Permission">
+              <PropertyRef Name="User_Permission1" />
+            </Principal>
+            <Dependent Role="UserPer_Permission">
+              <PropertyRef Name="User_Permission" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CourseUser">
+          <End Type="ManageCourseModel.Course" Role="Course" Multiplicity="*" />
+          <End Type="ManageCourseModel.User" Role="User" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="ManageCourseModelStoreContainer" CdmEntityContainer="ManageCourseEntities">
+          <EntitySetMapping Name="CategoryCourse">
+            <EntityTypeMapping TypeName="ManageCourseModel.CategoryCourse">
+              <MappingFragment StoreEntitySet="CategoryCourse">
+                <ScalarProperty Name="Cat_Name" ColumnName="Cat_Name" />
+                <ScalarProperty Name="CatCourse_ID" ColumnName="CatCourse_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Course">
+            <EntityTypeMapping TypeName="ManageCourseModel.Course">
+              <MappingFragment StoreEntitySet="Course">
+                <ScalarProperty Name="Topic_ID" ColumnName="Topic_ID" />
+                <ScalarProperty Name="CatCourse_ID" ColumnName="CatCourse_ID" />
+                <ScalarProperty Name="Course_Name" ColumnName="Course_Name" />
+                <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Permission">
+            <EntityTypeMapping TypeName="ManageCourseModel.Permission">
+              <MappingFragment StoreEntitySet="Permission">
+                <ScalarProperty Name="Permission_Name" ColumnName="Permission_Name" />
+                <ScalarProperty Name="Permission_ID" ColumnName="Permission_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topic">
+            <EntityTypeMapping TypeName="ManageCourseModel.Topic">
+              <MappingFragment StoreEntitySet="Topic">
+                <ScalarProperty Name="Topic_Name" ColumnName="Topic_Name" />
+                <ScalarProperty Name="Topic_ID" ColumnName="Topic_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="ManageCourseModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="User_Password" ColumnName="User_Password" />
+                <ScalarProperty Name="User_Username" ColumnName="User_Username" />
+                <ScalarProperty Name="User_Permission" ColumnName="User_Permission" />
+                <ScalarProperty Name="User_Address" ColumnName="User_Address" />
+                <ScalarProperty Name="User_Phone" ColumnName="User_Phone" />
+                <ScalarProperty Name="User_Email" ColumnName="User_Email" />
+                <ScalarProperty Name="User_Name" ColumnName="User_Name" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User_Permission">
+            <EntityTypeMapping TypeName="ManageCourseModel.User_Permission">
+              <MappingFragment StoreEntitySet="User_Permission">
+                <ScalarProperty Name="User_Permission_Name" ColumnName="User_Permission_Name" />
+                <ScalarProperty Name="User_Permission1" ColumnName="User_Permission" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserPer_Permission">
+            <EntityTypeMapping TypeName="ManageCourseModel.UserPer_Permission">
+              <MappingFragment StoreEntitySet="UserPer_Permission">
+                <ScalarProperty Name="Ghichu" ColumnName="Ghichu" />
+                <ScalarProperty Name="Permission_ID" ColumnName="Permission_ID" />
+                <ScalarProperty Name="User_Permission" ColumnName="User_Permission" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CourseUser" TypeName="ManageCourseModel.CourseUser" StoreEntitySet="CourseUser">
+            <EndProperty Name="User">
+              <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+            </EndProperty>
+            <EndProperty Name="Course">
+              <ScalarProperty Name="Course_ID" ColumnName="Course_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
